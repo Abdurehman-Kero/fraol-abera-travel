@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, Quote } from 'lucide-react';
+import { Star } from 'lucide-react';
 
 export const Testimonials: React.FC = () => {
   const testimonials = [
@@ -41,9 +41,7 @@ export const Testimonials: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, idx) => (
             <div key={idx} className="bg-[#F7F3EC] rounded-2xl p-8 relative shadow-sm hover:shadow-xl transition-shadow duration-300 border border-[#E9E3DA]">
-              <div className="absolute -top-4 -left-2 text-[#D66A4A]/20">
-                <Quote className="w-16 h-16 fill-current" />
-              </div>
+
               
               <div className="relative z-10 space-y-4">
                 <div className="flex space-x-1">
