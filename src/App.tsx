@@ -13,6 +13,8 @@ import { ReceiptUploadModal } from './components/ReceiptUploadModal';
 import { TrackInquiryModal } from './components/TrackInquiryModal';
 import { AdminPortal } from './components/AdminPortal';
 import { ContactFooter } from './components/ContactFooter';
+import { TrustedPartners } from './components/TrustedPartners';
+import { Testimonials } from './components/Testimonials';
 import { Compass, Sparkles, Phone, Calendar, Search, CheckCircle2 } from 'lucide-react';
 
 export default function App() {
@@ -102,6 +104,9 @@ export default function App() {
         currentLang={currentLang}
       />
 
+      {/* SECTION: Trusted Partners */}
+      <TrustedPartners />
+
       {/* Main Content Sections */}
       <main className="space-y-12 sm:space-y-16 py-8 sm:py-12">
         {/* SECTION: Tour Packages Catalogue */}
@@ -176,6 +181,9 @@ export default function App() {
 
         {/* SECTION: National Park Permits */}
         <VisaAssistanceSection onOpenWizard={handleOpenWizardWithService} currentLang={currentLang} />
+
+        {/* SECTION: Testimonials */}
+        <Testimonials />
       </main>
 
       {/* Footer */}
