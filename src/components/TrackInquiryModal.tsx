@@ -113,13 +113,64 @@ export const TrackInquiryModal: React.FC<TrackInquiryModalProps> = ({
             </button>
           </form>
 
-          {/* Error Notice */}
-          {errorMsg && (
-            <div className="p-3 rounded-[2px] bg-[#D66A4A]/10 border border-[#D66A4A] text-[#D66A4A] text-xs flex items-center space-x-2 font-semibold">
-              <AlertCircle className="w-4 h-4 text-[#D66A4A] shrink-0" />
-              <span>{errorMsg}</span>
-            </div>
-          )}
+          {/* Professional Error State */}
+          {errorMsg && (() => {
+            const isNetwork = errorMsg.toLowerCase().includes('connection') || errorMsg.toLowerCase().includes('network') || errorMsg.toLowerCase().includes('fetch');
+            return (
+              <div className="rounded-xl border border-[#E9E3DA] overflow-hidden shadow-sm">
+                {/* Error Header */}
+                <div className={`px-5 py-4 flex items-start space-x-3 ${isNetwork ? 'bg-amber-50 border-b border-amber-100' : 'bg-[#F7F3EC] border-b border-[#E9E3DA]'}`}>
+                  <div className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 ${isNetwork ? 'bg-amber-100' : 'bg-[#D66A4A]/10'}`}>
+                    <AlertCircle className={`w-5 h-5 ${isNetwork ? 'text-amber-600' : 'text-[#D66A4A]'}`} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-[#262523]">
+                      {isNetwork ? 'Connection Issue' : 'Ticket Not Found'}
+                    </p>
+                    <p className="text-xs text-[#78736B] mt-0.5 leading-relaxed">
+                      {isNetwork
+                        ? 'We could not connect to our booking system. Please check your internet connection and try again.'
+                        : 'We couldn\'t find an inquiry matching your reference. Please double-check the Ticket ID or phone number you entered.'}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Help Options */}
+                <div className="px-5 py-4 bg-white space-y-3">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#78736B]">
+                    Need help? Contact us directly:
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <a
+                      href="tel:+251921741429"
+                      className="flex items-center justify-center space-x-2 py-3 bg-[#D66A4A] text-white rounded-lg text-xs font-bold transition hover:bg-[#C2583A]"
+                    >
+                      <PhoneCall className="w-4 h-4" />
+                      <span>Call Fraol</span>
+                    </a>
+                    <a
+                      href="https://wa.me/251921741429"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center space-x-2 py-3 bg-[#25D366] text-white rounded-lg text-xs font-bold transition hover:bg-[#1ebe5a]"
+                    >
+                      <Send className="w-4 h-4" />
+                      <span>WhatsApp</span>
+                    </a>
+                    <a
+                      href="https://t.me/FraolAberaTravel"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center space-x-2 py-3 bg-[#0088cc] text-white rounded-lg text-xs font-bold transition hover:bg-[#0077b3]"
+                    >
+                      <Send className="w-4 h-4" />
+                      <span>Telegram</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Inquiry Record Display */}
           {inquiry && (
