@@ -8,9 +8,9 @@ export interface Translations {
   
   // Nav
   navHome: string;
-  navExpeditions: string;
-  navTransport: string;
-  navPermits: string;
+  navWhyUs: string;
+  navExperiences: string;
+  navDestinations: string;
   navTrack: string;
   navAdmin: string;
   bookInquiry: string;
@@ -115,9 +115,9 @@ export const translations: Record<Language, Translations> = {
     phoneTel: '+251921741429',
     
     navHome: 'Home',
-    navExpeditions: 'Domestic Tours',
-    navTransport: 'Flights & Drive',
-    navPermits: 'Park Clearances',
+    navWhyUs: 'Why Us',
+    navExperiences: 'Experiences',
+    navDestinations: 'Destinations',
     navTrack: 'Track Inquiry',
     navAdmin: 'Agent Portal',
     bookInquiry: 'Book / Inquire',
@@ -210,9 +210,9 @@ export const translations: Record<Language, Translations> = {
     phoneTel: '+251921741429',
     
     navHome: 'መነሻ',
-    navExpeditions: 'የሀገር ውስጥ ጉዞዎች',
-    navTransport: 'በረራ እና የመኪና ጉዞ',
-    navPermits: 'የፓርክ ፈቃዶች',
+    navWhyUs: 'ለምን እኛ',
+    navExperiences: 'አገልግሎቶች',
+    navDestinations: 'መዳረሻዎች',
     navTrack: 'ጉዞ መከታተያ',
     navAdmin: 'የኤጀንት መግቢያ',
     bookInquiry: 'ጉዞ ይመዝግቡ',
@@ -305,9 +305,9 @@ export const translations: Record<Language, Translations> = {
     phoneTel: '+251921741429',
     
     navHome: 'Baqqa Fuulaa',
-    navExpeditions: 'Imala Biyya Keessaa',
-    navTransport: 'Balalii & Konkolaataa',
-    navPermits: 'Eeyyama Paarkii',
+    navWhyUs: 'Maaliif Nuti',
+    navExperiences: 'Muuxannoo',
+    navDestinations: 'Bakka Gahiinsa',
     navTrack: 'Hordoffii Imala',
     navAdmin: 'Seensa Eejentii',
     bookInquiry: 'Imala Galmeessi',

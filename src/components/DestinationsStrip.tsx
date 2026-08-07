@@ -39,7 +39,7 @@ export const DestinationsStrip: React.FC<DestinationsStripProps> = ({ onOpenWiza
   ];
 
   return (
-    <section className="bg-[#1C1917] py-20 sm:py-28 overflow-hidden">
+    <section id="destinations" className="bg-[#1C1917] py-20 sm:py-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">

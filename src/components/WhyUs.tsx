@@ -11,7 +11,7 @@ export const WhyUs: React.FC<WhyUsProps> = ({ onOpenWizard, currentLang }) => {
   const t = translations[currentLang];
 
   return (
-    <section className="bg-[#F5F1EA] py-20 sm:py-28">
+    <section id="whyus" className="bg-[#F5F1EA] py-20 sm:py-28">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           

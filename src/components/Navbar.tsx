@@ -47,9 +47,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   const navLinks = [
-    { id: 'packages', label: t.navExpeditions },
-    { id: 'transport', label: t.navTransport },
-    { id: 'permits', label: t.navPermits },
+    { id: 'whyus', label: t.navWhyUs },
+    { id: 'experiences', label: t.navExperiences },
+    { id: 'destinations', label: t.navDestinations },
     { id: 'about', label: t.contactHeader },
   ];
 

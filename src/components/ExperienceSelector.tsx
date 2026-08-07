@@ -42,7 +42,7 @@ export const ExperienceSelector: React.FC<ExperienceSelectorProps> = ({ onOpenWi
   ];
 
   return (
-    <section className="bg-[#EDEAE2] py-20 sm:py-28">
+    <section id="experiences" className="bg-[#EDEAE2] py-20 sm:py-28">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         {/* Header */}
         <div className="text-center max-w-xl mx-auto mb-14">
