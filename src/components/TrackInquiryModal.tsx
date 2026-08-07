@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { InquiryTicket } from '../types';
 import { 
-  X, 
-  Search, 
-  AlertCircle, 
-  Send, 
-  PhoneCall
+  X, Search, AlertCircle, Send, PhoneCall
 } from 'lucide-react';
-
 import { Language, translations } from '../data/translations';
 
 interface TrackInquiryModalProps {
@@ -60,39 +55,39 @@ export const TrackInquiryModal: React.FC<TrackInquiryModalProps> = ({
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'new':
-        return <span className="px-2.5 py-1 rounded-[2px] bg-[#F7F3EC] text-[#262523] border border-[#E9E3DA] text-[10px] font-bold uppercase tracking-wider">New Ticket</span>;
+        return <span className="px-3 py-1 rounded-sm bg-[#1C1917]/5 text-[#1C1917] border border-[#1C1917]/10 text-[9px] font-bold uppercase tracking-widest">New Ticket</span>;
       case 'in_review':
-        return <span className="px-2.5 py-1 rounded-[2px] bg-[#D66A4A]/10 text-[#D66A4A] border border-[#D66A4A] text-[10px] font-bold uppercase tracking-wider">Under Review</span>;
+        return <span className="px-3 py-1 rounded-sm bg-[#C97B4B]/10 text-[#C97B4B] border border-[#C97B4B]/20 text-[9px] font-bold uppercase tracking-widest">Under Review</span>;
       case 'quote_sent':
-        return <span className="px-2.5 py-1 rounded-[2px] bg-[#AEB69A]/20 text-[#8A9374] border border-[#8A9374] text-[10px] font-bold uppercase tracking-wider">Quote Prepared</span>;
+        return <span className="px-3 py-1 rounded-sm bg-[#4A5D23]/10 text-[#4A5D23] border border-[#4A5D23]/20 text-[9px] font-bold uppercase tracking-widest">Quote Prepared</span>;
       case 'receipt_pending':
-        return <span className="px-2.5 py-1 rounded-[2px] bg-[#D66A4A]/20 text-[#D66A4A] border border-[#D66A4A] text-[10px] font-bold uppercase tracking-wider">Receipt Verification Pending</span>;
+        return <span className="px-3 py-1 rounded-sm bg-[#C97B4B]/10 text-[#C97B4B] border border-[#C97B4B]/20 text-[9px] font-bold uppercase tracking-widest">Receipt Pending</span>;
       case 'confirmed':
-        return <span className="px-2.5 py-1 rounded-[2px] bg-[#8A9374] text-white border border-[#8A9374] text-[10px] font-bold uppercase tracking-wider">Ticket Confirmed</span>;
+        return <span className="px-3 py-1 rounded-sm bg-[#4A5D23] text-white border border-[#4A5D23] text-[9px] font-bold uppercase tracking-widest">Confirmed</span>;
       case 'completed':
-        return <span className="px-2.5 py-1 rounded-[2px] bg-[#262523] text-white border border-[#262523] text-[10px] font-bold uppercase tracking-wider">Completed</span>;
+        return <span className="px-3 py-1 rounded-sm bg-[#1C1917] text-[#F5F1EA] border border-[#1C1917] text-[9px] font-bold uppercase tracking-widest">Completed</span>;
       default:
-        return <span className="px-2.5 py-1 rounded-[2px] bg-[#F7F3EC] text-[#262523] text-[10px] font-bold uppercase tracking-wider">{status}</span>;
+        return <span className="px-3 py-1 rounded-sm bg-[#1C1917]/5 text-[#1C1917] border border-[#1C1917]/10 text-[9px] font-bold uppercase tracking-widest">{status}</span>;
     }
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#262523]/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      <div className="bg-white border border-[#E9E3DA] rounded-[2px] max-w-2xl w-full p-6 sm:p-8 text-[#262523] shadow-2xl relative my-auto">
+    <div className="fixed inset-0 z-50 bg-[#1C1917]/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div className="bg-[#F5F1EA] border border-[#1C1917]/10 rounded-sm max-w-2xl w-full p-6 sm:p-10 text-[#1C1917] shadow-2xl relative my-auto">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-[2px] bg-[#F7F3EC] hover:bg-[#E9E3DA] text-[#262523] transition border border-[#E9E3DA]"
+          className="absolute top-4 right-4 p-2 text-[#1C1917]/50 hover:text-[#1C1917] hover:bg-[#1C1917]/5 rounded-sm transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           <div>
-            <h2 className="text-2xl font-bold font-serif text-[#262523] flex items-center space-x-2">
-              <Search className="w-6 h-6 text-[#D66A4A]" />
+            <h2 className="font-['Cormorant_Garamond'] text-3xl sm:text-4xl font-light text-[#1C1917] mb-2 flex items-center gap-3">
+              <Search className="w-7 h-7 text-[#C97B4B]" />
               <span>{t.trackModalTitle}</span>
             </h2>
-            <p className="text-xs text-[#78736B]">
+            <p className="text-sm text-[#6B6560] font-light">
               {t.trackModalSubtitle}
             </p>
           </div>
@@ -100,21 +95,21 @@ export const TrackInquiryModal: React.FC<TrackInquiryModalProps> = ({
           {/* Search Bar */}
           <form 
             onSubmit={(e) => { e.preventDefault(); handleSearch(searchQuery); }}
-            className="flex space-x-2"
+            className="flex flex-col sm:flex-row gap-3"
           >
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t.trackModalPlaceholder}
-              className="flex-1 px-3.5 py-2.5 bg-[#F7F3EC] border border-[#E9E3DA] rounded-[2px] text-sm text-[#262523] placeholder-[#78736B] focus:outline-none focus:border-[#D66A4A] font-mono"
+              className="flex-1 px-4 py-3 bg-white border border-[#1C1917]/10 rounded-sm text-sm text-[#1C1917] placeholder-[#6B6560]/60 focus:outline-none focus:border-[#C97B4B] focus:ring-1 focus:ring-[#C97B4B]/20 transition-all font-mono"
             />
             <button
               type="submit"
               disabled={loading}
-              className="px-5 py-2.5 rounded-[2px] bg-[#D66A4A] hover:bg-[#C2583A] text-white font-bold text-xs uppercase tracking-widest transition flex items-center space-x-1"
+              className="px-8 py-3 rounded-sm bg-[#1C1917] hover:bg-black text-[#F5F1EA] text-[10px] font-bold uppercase tracking-widest transition flex items-center justify-center min-w-[140px]"
             >
-              {loading ? <span>{t.trackModalSearching}</span> : <span>{t.trackModalSearch}</span>}
+              {loading ? t.trackModalSearching : t.trackModalSearch}
             </button>
           </form>
 
@@ -122,17 +117,16 @@ export const TrackInquiryModal: React.FC<TrackInquiryModalProps> = ({
           {errorMsg && (() => {
             const isNetwork = errorMsg.toLowerCase().includes('connection') || errorMsg.toLowerCase().includes('network') || errorMsg.toLowerCase().includes('fetch');
             return (
-              <div className="rounded-xl border border-[#E9E3DA] overflow-hidden shadow-sm">
-                {/* Error Header */}
-                <div className={`px-5 py-4 flex items-start space-x-3 ${isNetwork ? 'bg-amber-50 border-b border-amber-100' : 'bg-[#F7F3EC] border-b border-[#E9E3DA]'}`}>
-                  <div className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 ${isNetwork ? 'bg-amber-100' : 'bg-[#D66A4A]/10'}`}>
-                    <AlertCircle className={`w-5 h-5 ${isNetwork ? 'text-amber-600' : 'text-[#D66A4A]'}`} />
+              <div className="bg-white border border-[#1C1917]/10 rounded-sm overflow-hidden shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-300">
+                <div className={`p-5 flex items-start gap-4 border-b border-[#1C1917]/10 ${isNetwork ? 'bg-[#C97B4B]/5' : 'bg-transparent'}`}>
+                  <div className="shrink-0 mt-0.5">
+                    <AlertCircle className={`w-5 h-5 ${isNetwork ? 'text-[#C97B4B]' : 'text-[#1C1917]/60'}`} />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-[#262523]">
+                    <h3 className="text-sm font-semibold text-[#1C1917] mb-1">
                       {isNetwork ? 'Connection Issue' : 'Ticket Not Found'}
-                    </p>
-                    <p className="text-xs text-[#78736B] mt-0.5 leading-relaxed">
+                    </h3>
+                    <p className="text-xs text-[#6B6560] leading-relaxed">
                       {isNetwork
                         ? 'We could not connect to our booking system. Please check your internet connection and try again.'
                         : 'We couldn\'t find an inquiry matching your reference. Please double-check the Ticket ID or phone number you entered.'}
@@ -140,36 +134,19 @@ export const TrackInquiryModal: React.FC<TrackInquiryModalProps> = ({
                   </div>
                 </div>
 
-                {/* Help Options */}
-                <div className="px-5 py-4 bg-white space-y-3">
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#78736B]">
-                    Need help? Contact us directly:
+                <div className="p-5 bg-transparent space-y-4">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-[#6B6560]">
+                    Need immediate assistance?
                   </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                    <a
-                      href="tel:+251921741429"
-                      className="flex items-center justify-center space-x-2 py-3 bg-[#D66A4A] text-white rounded-lg text-xs font-bold transition hover:bg-[#C2583A]"
-                    >
-                      <PhoneCall className="w-4 h-4" />
-                      <span>Call Fraol</span>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <a href="tel:+251921741429" className="flex items-center justify-center gap-2 py-3 bg-white border border-[#1C1917]/10 hover:border-[#C97B4B] rounded-sm text-[#1C1917] text-[10px] font-bold uppercase tracking-wider transition">
+                      <PhoneCall className="w-3.5 h-3.5" /> Call Us
                     </a>
-                    <a
-                      href="https://wa.me/251921741429"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center space-x-2 py-3 bg-[#25D366] text-white rounded-lg text-xs font-bold transition hover:bg-[#1ebe5a]"
-                    >
-                      <Send className="w-4 h-4" />
-                      <span>WhatsApp</span>
+                    <a href="https://wa.me/251921741429" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3 bg-white border border-[#1C1917]/10 hover:border-[#25D366] rounded-sm text-[#1C1917] text-[10px] font-bold uppercase tracking-wider transition">
+                      <Send className="w-3.5 h-3.5" /> WhatsApp
                     </a>
-                    <a
-                      href="https://t.me/FraolAberaTravel"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center space-x-2 py-3 bg-[#0088cc] text-white rounded-lg text-xs font-bold transition hover:bg-[#0077b3]"
-                    >
-                      <Send className="w-4 h-4" />
-                      <span>Telegram</span>
+                    <a href="https://t.me/FraolAberaTravel" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3 bg-white border border-[#1C1917]/10 hover:border-[#0088cc] rounded-sm text-[#1C1917] text-[10px] font-bold uppercase tracking-wider transition">
+                      <Send className="w-3.5 h-3.5" /> Telegram
                     </a>
                   </div>
                 </div>
@@ -179,103 +156,104 @@ export const TrackInquiryModal: React.FC<TrackInquiryModalProps> = ({
 
           {/* Inquiry Record Display */}
           {inquiry && (
-            <div className="bg-[#F7F3EC] border border-[#E9E3DA] rounded-[2px] p-5 space-y-4 text-xs">
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#E9E3DA] pb-3">
+            <div className="bg-white border border-[#1C1917]/10 rounded-sm p-6 sm:p-8 space-y-6 shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-500">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[#1C1917]/10 pb-4">
                 <div>
-                  <span className="text-[10px] uppercase text-[#78736B] block font-mono">Ticket ID</span>
-                  <span className="text-lg font-bold font-mono text-[#D66A4A]">{inquiry.id}</span>
+                  <p className="text-[9px] uppercase tracking-[0.3em] text-[#6B6560] mb-1">Ticket ID</p>
+                  <p className="font-mono text-xl text-[#C97B4B]">{inquiry.id}</p>
                 </div>
                 <div>{getStatusBadge(inquiry.status)}</div>
               </div>
 
               {/* Grid Summary */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-[#262523]">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-6 gap-x-4">
                 <div>
-                  <strong className="text-[#78736B] text-[10px] uppercase block">Customer</strong>
-                  <span className="font-semibold text-[#262523]">{inquiry.customerName}</span>
+                  <p className="text-[9px] uppercase tracking-[0.2em] text-[#6B6560] mb-1">Customer</p>
+                  <p className="text-sm font-semibold text-[#1C1917] truncate">{inquiry.customerName}</p>
                 </div>
                 <div>
-                  <strong className="text-[#78736B] text-[10px] uppercase block">Service</strong>
-                  <span className="font-semibold text-[#D66A4A]">{inquiry.serviceType.replace('_', ' ').toUpperCase()}</span>
+                  <p className="text-[9px] uppercase tracking-[0.2em] text-[#6B6560] mb-1">Service</p>
+                  <p className="text-sm font-semibold text-[#1C1917]">{inquiry.serviceType.replace('_', ' ').toUpperCase()}</p>
                 </div>
                 <div>
-                  <strong className="text-[#78736B] text-[10px] uppercase block">Route/Destination</strong>
-                  <span className="font-semibold text-[#262523]">{inquiry.departureCity} → {inquiry.destinationCity}</span>
+                  <p className="text-[9px] uppercase tracking-[0.2em] text-[#6B6560] mb-1">Route</p>
+                  <p className="text-sm font-semibold text-[#1C1917] truncate">{inquiry.destinationCity}</p>
                 </div>
                 <div>
-                  <strong className="text-[#78736B] text-[10px] uppercase block">Travelers</strong>
-                  <span>{inquiry.travelers?.adults || 1} Adult(s), {inquiry.travelers?.children || 0} Child(ren)</span>
+                  <p className="text-[9px] uppercase tracking-[0.2em] text-[#6B6560] mb-1">Travelers</p>
+                  <p className="text-sm text-[#1C1917]">{inquiry.travelers?.adults || 1} Adult(s)</p>
                 </div>
                 <div>
-                  <strong className="text-[#78736B] text-[10px] uppercase block">Phone</strong>
-                  <span className="font-mono text-[#262523]">{inquiry.phone}</span>
+                  <p className="text-[9px] uppercase tracking-[0.2em] text-[#6B6560] mb-1">Phone</p>
+                  <p className="font-mono text-sm text-[#1C1917] truncate">{inquiry.phone}</p>
                 </div>
                 <div>
-                  <strong className="text-[#78736B] text-[10px] uppercase block">Assigned Agent</strong>
-                  <span className="text-[#8A9374] font-semibold">{inquiry.assignedAgent || 'Operations Desk'}</span>
+                  <p className="text-[9px] uppercase tracking-[0.2em] text-[#6B6560] mb-1">Agent</p>
+                  <p className="text-sm font-semibold text-[#4A5D23]">{inquiry.assignedAgent || 'Unassigned'}</p>
                 </div>
               </div>
 
               {/* Quote Amount if available */}
               {inquiry.quotedAmount && (
-                <div className="p-3 bg-white border border-[#D66A4A]/30 rounded-[2px] flex items-center justify-between">
+                <div className="bg-[#F5F1EA] border border-[#C97B4B]/30 rounded-sm p-5 flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
                   <div>
-                    <span className="text-[10px] uppercase text-[#D66A4A] font-bold block font-serif">Official Quote Prepared</span>
-                    <span className="text-lg font-bold text-[#D66A4A] font-mono">
-                      {inquiry.quotedAmount.toLocaleString()} {inquiry.quotedCurrency || 'ETB'}
-                    </span>
+                    <p className="text-[10px] uppercase tracking-widest text-[#C97B4B] font-bold mb-1">Official Quote Prepared</p>
+                    <p className="text-2xl font-light font-['Cormorant_Garamond'] text-[#C97B4B]">
+                      {inquiry.quotedAmount.toLocaleString()} <span className="text-sm font-semibold text-[#1C1917]">{inquiry.quotedCurrency || 'ETB'}</span>
+                    </p>
                   </div>
                   <button
                     onClick={() => { onClose(); onOpenReceiptModal(); }}
-                    className="px-3 py-1.5 rounded-[2px] bg-[#8A9374] hover:bg-[#788062] text-white font-bold text-xs uppercase tracking-wider transition"
+                    className="px-6 py-3 rounded-sm bg-[#C97B4B] hover:bg-[#B8693A] text-white text-[10px] font-bold uppercase tracking-widest transition w-full sm:w-auto"
                   >
-                    Upload Deposit Slip
+                    Upload Receipt
                   </button>
                 </div>
               )}
 
               {/* Admin Notes */}
               {inquiry.adminNotes && (
-                <div className="p-3 bg-white border border-[#E9E3DA] rounded-[2px] space-y-1">
-                  <span className="text-[10px] uppercase font-bold text-[#78736B] block">Agent Update Notes:</span>
-                  <p className="text-[#262523] italic font-light">{inquiry.adminNotes}</p>
+                <div className="bg-[#1C1917]/5 rounded-sm p-4 mt-4">
+                  <p className="text-[9px] uppercase tracking-[0.2em] text-[#1C1917]/60 font-bold mb-2">Agent Notes</p>
+                  <p className="text-sm text-[#1C1917] font-light italic leading-relaxed">{inquiry.adminNotes}</p>
                 </div>
               )}
 
               {/* Payment Receipts History */}
               {inquiry.receipts && inquiry.receipts.length > 0 && (
-                <div className="space-y-2 pt-2 border-t border-[#E9E3DA]">
-                  <span className="font-bold text-[#8A9374] text-[10px] uppercase tracking-wider block">Submitted Payment Proofs:</span>
-                  {inquiry.receipts.map((rc, i) => (
-                    <div key={i} className="p-2 bg-white rounded-[2px] border border-[#E9E3DA] flex items-center justify-between text-[11px]">
-                      <div>
-                        <span className="font-bold text-[#262523]">{rc.bankName}</span> — <span className="font-mono text-[#D66A4A]">{rc.transactionRef}</span> ({rc.amount.toLocaleString()} ETB)
+                <div className="pt-6 mt-4 border-t border-[#1C1917]/10">
+                  <p className="text-[9px] uppercase tracking-[0.2em] text-[#1C1917]/60 font-bold mb-3">Submitted Documents</p>
+                  <div className="space-y-2">
+                    {inquiry.receipts.map((rc, i) => (
+                      <div key={i} className="px-4 py-3 bg-white border border-[#1C1917]/10 rounded-sm flex items-center justify-between">
+                        <div>
+                          <p className="text-xs font-semibold text-[#1C1917]">{rc.bankName}</p>
+                          <p className="font-mono text-[10px] text-[#6B6560]">{rc.transactionRef}</p>
+                        </div>
+                        <span className={`px-2.5 py-1 rounded-sm text-[9px] font-bold uppercase tracking-widest ${rc.status === 'verified' ? 'bg-[#4A5D23]/10 text-[#4A5D23]' : 'bg-[#C97B4B]/10 text-[#C97B4B]'}`}>
+                          {rc.status}
+                        </span>
                       </div>
-                      <span className={`px-2 py-0.5 rounded-[2px] text-[10px] font-bold uppercase tracking-wider ${rc.status === 'verified' ? 'bg-[#AEB69A]/30 text-[#8A9374]' : 'bg-[#D66A4A]/20 text-[#D66A4A]'}`}>
-                        {rc.status.toUpperCase()}
-                      </span>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               )}
 
-              {/* Actions Row */}
-              <div className="pt-3 flex flex-wrap gap-2">
+              {/* Contact Agent */}
+              <div className="pt-6 flex flex-col sm:flex-row gap-3">
                 <a
-                  href={`https://t.me/FraolAberaTravel?text=${encodeURIComponent(`Hello, my Inquiry Ticket ID is ${inquiry.id}. Checking status update.`)}`}
+                  href={`https://t.me/FraolAberaTravel?text=${encodeURIComponent(`Hello, I'm inquiring about Ticket ID ${inquiry.id}.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 py-2 rounded-[2px] bg-[#262523] hover:bg-black text-white font-bold text-center transition flex items-center justify-center space-x-1 text-xs uppercase tracking-wider"
+                  className="flex-1 py-3 bg-white border border-[#1C1917]/10 hover:border-[#1C1917]/40 rounded-sm text-[#1C1917] text-[10px] font-bold uppercase tracking-widest transition flex items-center justify-center gap-2"
                 >
-                  <Send className="w-3.5 h-3.5 text-[#D66A4A]" />
-                  <span>Telegram Agent</span>
+                  <Send className="w-3.5 h-3.5" /> Telegram Agent
                 </a>
                 <a
                   href="tel:+251921741429"
-                  className="px-4 py-2.5 rounded-[4px] bg-[#F7F3EC] hover:bg-[#E9E3DA] text-[#262523] border border-[#E9E3DA] font-bold text-center transition flex items-center justify-center space-x-1 text-xs uppercase tracking-wider min-h-[44px]"
+                  className="flex-1 py-3 bg-white border border-[#1C1917]/10 hover:border-[#1C1917]/40 rounded-sm text-[#1C1917] text-[10px] font-bold uppercase tracking-widest transition flex items-center justify-center gap-2"
                 >
-                  <PhoneCall className="w-4 h-4 text-[#D66A4A]" />
-                  <span>Call Fraol (+251 92 174 1429)</span>
+                  <PhoneCall className="w-3.5 h-3.5" /> Call Agent
                 </a>
               </div>
             </div>
@@ -285,4 +263,3 @@ export const TrackInquiryModal: React.FC<TrackInquiryModalProps> = ({
     </div>
   );
 };
-

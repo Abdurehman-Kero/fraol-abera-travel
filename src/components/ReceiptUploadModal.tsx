@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
 import { ETHIOPIAN_BANK_ACCOUNTS } from '../data/bankDetails';
 import { 
-  X, 
-  Receipt, 
-  Upload, 
-  CheckCircle2, 
-  AlertCircle, 
-  Send,
-  Copy,
-  Check
+  X, Receipt, Upload, CheckCircle2, AlertCircle, Send, Copy, Check
 } from 'lucide-react';
-
 import { Language, translations } from '../data/translations';
 
 interface ReceiptUploadModalProps {
@@ -50,15 +42,15 @@ export const ReceiptUploadModal: React.FC<ReceiptUploadModalProps> = ({ onClose,
     setErrorMsg('');
 
     if (!ticketId.trim()) {
-      setErrorMsg('Please enter your Inquiry Ticket Reference # (e.g. FATA-2025-1001).');
+      setErrorMsg('Please enter your Ticket ID (e.g. FATA-2025-1001).');
       return;
     }
     if (!transactionRef.trim()) {
-      setErrorMsg('Please enter the Bank Transaction Reference ID.');
+      setErrorMsg('Please enter the Transaction Reference ID.');
       return;
     }
     if (!amount || Number(amount) <= 0) {
-      setErrorMsg('Please enter a valid payment amount in ETB.');
+      setErrorMsg('Please enter a valid payment amount.');
       return;
     }
 
@@ -91,56 +83,56 @@ export const ReceiptUploadModal: React.FC<ReceiptUploadModalProps> = ({ onClose,
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#262523]/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      <div className="bg-white border border-[#E9E3DA] rounded-[2px] max-w-2xl w-full p-6 sm:p-8 text-[#262523] shadow-2xl relative my-auto">
+    <div className="fixed inset-0 z-50 bg-[#1C1917]/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div className="bg-[#F5F1EA] border border-[#1C1917]/10 rounded-sm max-w-2xl w-full p-6 sm:p-10 text-[#1C1917] shadow-2xl relative my-auto">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-[2px] bg-[#F7F3EC] hover:bg-[#E9E3DA] text-[#262523] transition border border-[#E9E3DA]"
+          className="absolute top-4 right-4 p-2 text-[#1C1917]/50 hover:text-[#1C1917] hover:bg-[#1C1917]/5 rounded-sm transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
         {!submitted ? (
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
             <div>
-              <div className="flex items-center space-x-2 text-[#D66A4A] text-[10px] font-bold uppercase tracking-widest mb-1">
+              <div className="flex items-center gap-2 text-[#C97B4B] text-[10px] font-bold uppercase tracking-[0.3em] mb-2">
                 <Receipt className="w-4 h-4" />
-                <span>Payment Verification Workflow</span>
+                <span>Payment Verification</span>
               </div>
-              <h2 className="text-2xl font-bold font-serif text-[#262523]">
+              <h2 className="font-['Cormorant_Garamond'] text-3xl sm:text-4xl font-light text-[#1C1917] mb-2">
                 {t.receiptModalTitle}
               </h2>
-              <p className="text-xs text-[#78736B]">
+              <p className="text-sm text-[#6B6560] font-light">
                 {t.receiptModalSubtitle}
               </p>
             </div>
 
             {errorMsg && (
-              <div className="p-3 rounded-[2px] bg-[#D66A4A]/10 border border-[#D66A4A] text-[#D66A4A] text-xs flex items-center space-x-2 font-semibold">
-                <AlertCircle className="w-4 h-4 text-[#D66A4A] shrink-0" />
-                <span>{errorMsg}</span>
+              <div className="p-4 bg-[#C97B4B]/10 border-l-2 border-[#C97B4B] text-[#1C1917] text-sm flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-[#C97B4B] shrink-0 mt-0.5" />
+                <p>{errorMsg}</p>
               </div>
             )}
 
             {/* Official Ethiopian Bank Transfer Accounts */}
-            <div className="p-4 bg-[#F7F3EC] border border-[#E9E3DA] rounded-[2px] space-y-3">
-              <span className="text-[10px] font-bold text-[#D66A4A] uppercase tracking-widest block font-serif">
-                Official Agency Bank Accounts (Fraol Abera Travel Agency)
+            <div className="p-5 bg-white border border-[#1C1917]/10 rounded-sm space-y-4">
+              <span className="text-[10px] font-bold text-[#C97B4B] uppercase tracking-[0.2em] block">
+                Official Agency Bank Accounts
               </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 {ETHIOPIAN_BANK_ACCOUNTS.map((acc, i) => (
-                  <div key={i} className="p-2.5 rounded-[2px] bg-white border border-[#E9E3DA] flex items-center justify-between">
+                  <div key={i} className="p-3 rounded-sm bg-[#F5F1EA] border border-[#1C1917]/10 flex items-center justify-between">
                     <div>
-                      <span className="font-bold text-[#262523] block">{acc.bankName}</span>
-                      <span className="text-[11px] text-[#D66A4A] font-mono font-bold">{acc.accountNumber}</span>
+                      <span className="font-bold text-[#1C1917] block mb-0.5">{acc.bankName}</span>
+                      <span className="text-[11px] text-[#C97B4B] font-mono font-bold tracking-widest">{acc.accountNumber}</span>
                     </div>
                     <button
                       type="button"
                       onClick={() => handleCopy(acc.accountNumber)}
-                      className="p-1.5 rounded-[2px] bg-[#F7F3EC] hover:bg-[#E9E3DA] text-[#262523] border border-[#E9E3DA] transition"
+                      className="p-2 rounded-sm bg-white hover:bg-[#1C1917]/5 text-[#1C1917] border border-[#1C1917]/10 transition"
                       title="Copy Account Number"
                     >
-                      {copiedBankAcc === acc.accountNumber ? <Check className="w-3.5 h-3.5 text-[#8A9374]" /> : <Copy className="w-3.5 h-3.5" />}
+                      {copiedBankAcc === acc.accountNumber ? <Check className="w-3.5 h-3.5 text-[#4A5D23]" /> : <Copy className="w-3.5 h-3.5" />}
                     </button>
                   </div>
                 ))}
@@ -148,113 +140,106 @@ export const ReceiptUploadModal: React.FC<ReceiptUploadModalProps> = ({ onClose,
             </div>
 
             {/* Form Inputs */}
-            <div className="space-y-4">
-              <div>
-                <label className="block text-[10px] font-bold uppercase tracking-wider text-[#262523] mb-1">
-                  Inquiry Ticket Reference # *
+            <div className="space-y-6">
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-semibold uppercase tracking-widest text-[#1C1917]/60">
+                  Ticket ID *
                 </label>
                 <input
                   type="text"
                   value={ticketId}
                   onChange={e => setTicketId(e.target.value)}
                   placeholder="e.g. FATA-2025-1001"
-                  className="w-full px-3.5 py-2.5 bg-[#F7F3EC] border border-[#E9E3DA] rounded-[2px] text-sm text-[#262523] focus:outline-none focus:border-[#D66A4A] font-mono"
+                  className="w-full bg-white border border-[#1C1917]/10 rounded-sm px-4 py-3 text-sm text-[#1C1917] focus:outline-none focus:border-[#C97B4B] focus:ring-1 focus:ring-[#C97B4B]/20 transition-all font-mono"
                   required
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-[#262523] mb-1">
-                    Bank / Payment Channel *
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-semibold uppercase tracking-widest text-[#1C1917]/60">
+                    Bank *
                   </label>
                   <select
                     value={selectedBank}
                     onChange={e => setSelectedBank(e.target.value)}
-                    className="w-full px-3 py-2 bg-[#F7F3EC] border border-[#E9E3DA] rounded-[2px] text-xs text-[#262523] focus:outline-none focus:border-[#D66A4A]"
+                    className="w-full bg-white border border-[#1C1917]/10 rounded-sm px-4 py-3 text-sm text-[#1C1917] focus:outline-none focus:border-[#C97B4B] focus:ring-1 focus:ring-[#C97B4B]/20 transition-all"
                   >
                     <option value="Telebirr">Telebirr</option>
-                    <option value="Commercial Bank of Ethiopia (CBE)">CBE (Commercial Bank)</option>
+                    <option value="Commercial Bank of Ethiopia (CBE)">CBE</option>
                     <option value="CBE Birr">CBE Birr</option>
                     <option value="Dashen Bank">Dashen Bank</option>
-                    <option value="Bank of Abyssinia">Bank of Abyssinia</option>
-                    <option value="Awash Bank">Awash Bank</option>
+                    <option value="Bank of Abyssinia">Abyssinia</option>
+                    <option value="Awash Bank">Awash</option>
                   </select>
                 </div>
 
-                <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-[#262523] mb-1">
-                    Transaction Ref ID / Slip # *
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-semibold uppercase tracking-widest text-[#1C1917]/60">
+                    Ref ID / Slip # *
                   </label>
                   <input
                     type="text"
                     value={transactionRef}
                     onChange={e => setTransactionRef(e.target.value)}
-                    placeholder="e.g. TB-98213749"
-                    className="w-full px-3 py-2 bg-[#F7F3EC] border border-[#E9E3DA] rounded-[2px] text-xs text-[#262523] focus:outline-none focus:border-[#D66A4A] font-mono"
+                    placeholder="e.g. TB-98213"
+                    className="w-full bg-white border border-[#1C1917]/10 rounded-sm px-4 py-3 text-sm text-[#1C1917] focus:outline-none focus:border-[#C97B4B] focus:ring-1 focus:ring-[#C97B4B]/20 transition-all font-mono"
                     required
                   />
                 </div>
 
-                <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-[#262523] mb-1">
-                    Amount Paid (ETB) *
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-semibold uppercase tracking-widest text-[#1C1917]/60">
+                    Amount (ETB) *
                   </label>
                   <input
                     type="number"
                     value={amount}
                     onChange={e => setAmount(e.target.value)}
                     placeholder="e.g. 26000"
-                    className="w-full px-3 py-2 bg-[#F7F3EC] border border-[#E9E3DA] rounded-[2px] text-xs text-[#262523] focus:outline-none focus:border-[#D66A4A] font-mono"
+                    className="w-full bg-white border border-[#1C1917]/10 rounded-sm px-4 py-3 text-sm text-[#1C1917] focus:outline-none focus:border-[#C97B4B] focus:ring-1 focus:ring-[#C97B4B]/20 transition-all font-mono"
                     required
                   />
                 </div>
               </div>
 
               {/* File Attachment */}
-              <div>
-                <label className="block text-[10px] font-bold uppercase tracking-wider text-[#262523] mb-1">
-                  Upload Slip / Screenshot Proof
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-semibold uppercase tracking-widest text-[#1C1917]/60">
+                  Upload Screenshot / Receipt
                 </label>
-                <div className="p-3 bg-[#F7F3EC] border-2 border-dashed border-[#E9E3DA] hover:border-[#D66A4A] rounded-[2px] text-center space-y-1 transition">
-                  <Upload className="w-6 h-6 text-[#8A9374] mx-auto" />
-                  <p className="text-xs text-[#262523]">Click to select receipt screenshot or PDF</p>
+                <div className="border-2 border-dashed border-[#1C1917]/20 rounded-sm p-6 text-center hover:border-[#C97B4B]/50 transition-colors bg-white relative">
                   <input 
                     type="file" 
                     onChange={handleFileChange} 
-                    className="hidden" 
-                    id="receipt-file-input"
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" 
                   />
-                  <label 
-                    htmlFor="receipt-file-input" 
-                    className="inline-block px-3 py-1 rounded-[2px] bg-white text-[#D66A4A] font-bold uppercase text-[10px] tracking-wider cursor-pointer border border-[#E9E3DA] hover:bg-[#E9E3DA]/40 transition"
-                  >
-                    Browse Image
-                  </label>
+                  <Upload className="w-6 h-6 text-[#1C1917]/40 mx-auto mb-2" />
+                  <p className="text-sm font-medium text-[#1C1917]">Click to select receipt</p>
                   {fileAttached && (
-                    <p className="text-[11px] text-[#8A9374] font-bold mt-1 uppercase tracking-wider">
-                      Receipt Screenshot Attached!
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#4A5D23] mt-2">
+                      Document Attached
                     </p>
                   )}
                 </div>
               </div>
             </div>
 
-            <div className="pt-2 flex justify-end space-x-3">
+            <div className="pt-4 flex flex-col sm:flex-row justify-end gap-3">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 rounded-[2px] bg-[#F7F3EC] text-[#262523] border border-[#E9E3DA] text-xs font-bold uppercase tracking-wider hover:bg-[#E9E3DA] transition"
+                className="px-6 py-3 rounded-sm bg-transparent text-[#1C1917] border border-[#1C1917]/10 hover:bg-white text-[10px] font-bold uppercase tracking-widest transition"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={loading}
-                className="px-6 py-2.5 rounded-[2px] bg-[#D66A4A] hover:bg-[#C2583A] text-white font-bold text-xs uppercase tracking-widest transition flex items-center space-x-2"
+                className="px-8 py-3 rounded-sm bg-[#C97B4B] hover:bg-[#B8693A] text-white font-bold text-[10px] uppercase tracking-[0.2em] transition flex items-center justify-center gap-2"
               >
                 {loading ? (
-                  <span>Submitting Receipt...</span>
+                  <span>Submitting...</span>
                 ) : (
                   <>
                     <span>{t.receiptModalUploadBtn}</span>
@@ -265,19 +250,19 @@ export const ReceiptUploadModal: React.FC<ReceiptUploadModalProps> = ({ onClose,
             </div>
           </form>
         ) : (
-          <div className="text-center space-y-4 py-6">
-            <div className="w-16 h-16 bg-[#AEB69A]/20 border-2 border-[#8A9374] text-[#8A9374] rounded-full flex items-center justify-center mx-auto">
-              <CheckCircle2 className="w-10 h-10" />
+          <div className="text-center py-12 px-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="w-16 h-16 bg-[#4A5D23]/10 text-[#4A5D23] rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h3 className="text-2xl font-bold font-serif text-[#262523]">
-              Payment Receipt Uploaded Successfully!
+            <h3 className="font-['Cormorant_Garamond'] text-3xl sm:text-4xl font-light text-[#1C1917] mb-4">
+              Receipt Uploaded
             </h3>
-            <p className="text-xs text-[#78736B] max-w-md mx-auto">
-              Your payment transaction reference <strong className="text-[#D66A4A] font-mono">{transactionRef}</strong> for ticket <strong className="text-[#262523] font-mono">{ticketId}</strong> has been routed to our finance verification queue at Akaki Kality, Addis Ababa.
+            <p className="text-[#6B6560] text-sm leading-relaxed max-w-sm mx-auto mb-8">
+              Your payment reference <strong className="text-[#C97B4B] font-mono">{transactionRef}</strong> for ticket <strong className="text-[#1C1917] font-mono">{ticketId}</strong> is under review. Our finance team will verify it shortly.
             </p>
             <button
               onClick={onClose}
-              className="w-full py-2.5 rounded-[2px] bg-[#262523] hover:bg-black text-white text-xs font-bold uppercase tracking-widest transition"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#1C1917] text-[#F5F1EA] text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-black transition-colors rounded-sm"
             >
               Close Window
             </button>
@@ -287,4 +272,3 @@ export const ReceiptUploadModal: React.FC<ReceiptUploadModalProps> = ({ onClose,
     </div>
   );
 };
-
