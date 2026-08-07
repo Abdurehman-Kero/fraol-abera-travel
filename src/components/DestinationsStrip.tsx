@@ -37,6 +37,16 @@ export const DestinationsStrip: React.FC<DestinationsStripProps> = ({ onOpenWiza
       label: 'Sulphur Volcanoes',
       image: '/forest_safari.png',
     },
+    {
+      name: 'Sof Omar',
+      label: 'Limestone Caves',
+      image: '/sof_omar.png',
+    },
+    {
+      name: 'Aba Jiffar',
+      label: 'Ancient Palace',
+      image: '/aba_jiffar.png',
+    }
   ];
 
   return (
@@ -61,8 +71,8 @@ export const DestinationsStrip: React.FC<DestinationsStripProps> = ({ onOpenWiza
           </button>
         </div>
 
-        {/* 5-photo horizontal strip */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
+        {/* 7-photo horizontal strip/grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
           {destinations.map((dest, idx) => (
             <button
               key={idx}

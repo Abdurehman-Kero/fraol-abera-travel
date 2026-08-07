@@ -11,7 +11,9 @@ interface HeroProps {
 const HERO_IMAGES = [
   '/hero-ethiopia.png',
   '/hero-lalibela.png',
-  '/hero-harar.png'
+  '/hero-harar.png',
+  '/sof_omar.png',
+  '/aba_jiffar.png'
 ];
 
 export const Hero: React.FC<HeroProps> = ({ onOpenWizard, onOpenTrackModal, currentLang }) => {
