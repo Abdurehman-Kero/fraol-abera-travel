@@ -105,7 +105,7 @@ export default function App() {
       />
 
       {/* SECTION: Trusted Partners */}
-      <TrustedPartners />
+      <TrustedPartners currentLang={currentLang} />
 
       {/* Main Content Sections */}
       <main className="space-y-12 sm:space-y-16 py-8 sm:py-12">
@@ -118,7 +118,7 @@ export default function App() {
                 <span>{t.featuredTitle}</span>
               </span>
               <h2 className="text-2xl sm:text-4xl font-extrabold font-serif text-white">
-                Iconic Ethiopian Expeditions & Destinations
+                {t.featuredSectionTitle}
               </h2>
               <p className="text-xs sm:text-sm text-slate-300 font-light">
                 {t.featuredSubtitle}
@@ -157,7 +157,7 @@ export default function App() {
           {/* Packages Grid */}
           {loading ? (
             <div className="text-center py-16 text-slate-400 font-mono text-sm">
-              Loading domestic travel packages...
+              {t.loading}
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -183,7 +183,7 @@ export default function App() {
         <VisaAssistanceSection onOpenWizard={handleOpenWizardWithService} currentLang={currentLang} />
 
         {/* SECTION: Testimonials */}
-        <Testimonials />
+        <Testimonials currentLang={currentLang} />
       </main>
 
       {/* Footer */}
@@ -246,6 +246,7 @@ export default function App() {
       {/* 3. Receipt Upload Modal */}
       {receiptModalOpen && (
         <ReceiptUploadModal
+          currentLang={currentLang}
           onClose={() => setReceiptModalOpen(false)}
           onSuccess={() => {
             showToast('Payment receipt submitted for verification!');
@@ -256,6 +257,7 @@ export default function App() {
       {/* 4. Track Inquiry Modal */}
       {trackModalOpen && (
         <TrackInquiryModal
+          currentLang={currentLang}
           initialSearchQuery={trackInitialQuery}
           onClose={() => setTrackModalOpen(false)}
           onOpenReceiptModal={() => {

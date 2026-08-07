@@ -11,12 +11,16 @@ import {
   Check
 } from 'lucide-react';
 
+import { Language, translations } from '../data/translations';
+
 interface ReceiptUploadModalProps {
   onClose: () => void;
   onSuccess: () => void;
+  currentLang?: Language;
 }
 
-export const ReceiptUploadModal: React.FC<ReceiptUploadModalProps> = ({ onClose, onSuccess }) => {
+export const ReceiptUploadModal: React.FC<ReceiptUploadModalProps> = ({ onClose, onSuccess, currentLang = 'en' }) => {
+  const t = translations[currentLang];
   const [ticketId, setTicketId] = useState('');
   const [selectedBank, setSelectedBank] = useState('Telebirr');
   const [transactionRef, setTransactionRef] = useState('');
@@ -104,10 +108,10 @@ export const ReceiptUploadModal: React.FC<ReceiptUploadModalProps> = ({ onClose,
                 <span>Payment Verification Workflow</span>
               </div>
               <h2 className="text-2xl font-bold font-serif text-[#262523]">
-                Upload Payment Receipt / Deposit Slip
+                {t.receiptModalTitle}
               </h2>
               <p className="text-xs text-[#78736B]">
-                Submit proof of bank transfer for ticket confirmation with Fraol Abera Travel Agency
+                {t.receiptModalSubtitle}
               </p>
             </div>
 
@@ -253,7 +257,7 @@ export const ReceiptUploadModal: React.FC<ReceiptUploadModalProps> = ({ onClose,
                   <span>Submitting Receipt...</span>
                 ) : (
                   <>
-                    <span>Submit Payment Proof</span>
+                    <span>{t.receiptModalUploadBtn}</span>
                     <Send className="w-4 h-4" />
                   </>
                 )}

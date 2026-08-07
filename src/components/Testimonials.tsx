@@ -1,28 +1,35 @@
 import React from 'react';
 import { Star } from 'lucide-react';
+import { Language, translations } from '../data/translations';
 
-export const Testimonials: React.FC = () => {
+interface TestimonialsProps {
+  currentLang: Language;
+}
+
+export const Testimonials: React.FC<TestimonialsProps> = ({ currentLang }) => {
+  const t = translations[currentLang];
+
   const testimonials = [
     {
       name: "Amanuel T.",
-      location: "Addis Ababa",
-      text: "Fraol Abera Travel handled our entire family trip to Lalibela. The flights, the local guide, and the hotel were perfectly coordinated. Highly recommend for any domestic tours!",
+      location: t.testi1Location,
+      text: t.testi1Text,
       rating: 5,
-      role: "Domestic Traveler"
+      role: t.testi1Role
     },
     {
       name: "Sarah Jenkins",
-      location: "UK",
-      text: "We wanted a 4x4 expedition to the Bale Mountains but didn't know where to start. Fraol's team arranged the Land Cruiser, driver, and park permits effortlessly. A truly professional agency.",
+      location: t.testi2Location,
+      text: t.testi2Text,
       rating: 5,
-      role: "International Tourist"
+      role: t.testi2Role
     },
     {
       name: "Dawit M.",
-      location: "Hawassa",
-      text: "I always use Fraol for booking my domestic Ethiopian Airlines flights. They are fast, reliable, and their Telebirr payment integration makes it incredibly easy to book from anywhere.",
+      location: t.testi3Location,
+      text: t.testi3Text,
       rating: 5,
-      role: "Frequent Flyer"
+      role: t.testi3Role
     }
   ];
 
@@ -33,8 +40,8 @@ export const Testimonials: React.FC = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center mb-16">
-          <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#D66A4A] mb-2">Client Experiences</h3>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#262523]">What Our Travelers Say</h2>
+          <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#D66A4A] mb-2">{t.testiPretitle}</h3>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#262523]">{t.testiTitle}</h2>
           <div className="w-16 h-1 bg-[#D66A4A] mx-auto mt-6 rounded-full"></div>
         </div>
 

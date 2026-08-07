@@ -36,7 +36,7 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({
             </div>
 
             <p className="text-xs text-[#E9E3DA]/70 leading-relaxed font-sans">
-              Premier Ethiopian travel agency located in Akaki Kality, Addis Ababa. Specializing in domestic cultural tours, 4x4 Land Cruiser forest drives, regional flight tickets, and national park clearances.
+              {t.footerAbout}
             </p>
 
             <div className="space-y-2 text-xs text-[#E9E3DA] pt-1">
@@ -56,7 +56,7 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({
           {/* Col 2: Services */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-widest text-[#D66A4A] font-serif">
-              Our Domestic Services
+              {t.footerServices}
             </h4>
             <ul className="space-y-2 text-xs text-[#E9E3DA]">
               <li>
@@ -90,7 +90,7 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({
           {/* Col 3: Contact */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-widest text-[#D66A4A] font-serif">
-              Direct Contact & Phone
+              {t.footerContact}
             </h4>
             <div className="space-y-2.5 text-xs">
               <a href="tel:+251921741429" className="flex items-center space-x-2 text-[#E9E3DA] hover:text-white transition font-bold text-sm min-h-[44px]">
@@ -122,7 +122,7 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({
           {/* Col 4: Payments */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-widest text-[#D66A4A] font-serif">
-              Telebirr & Bank Payments
+              {t.footerPayments}
             </h4>
             <div className="p-4 bg-white/5 border border-[#E9E3DA]/10 rounded-[4px] space-y-2.5 text-xs">
               <div className="flex items-center justify-between text-[#F7F3EC] font-bold">
@@ -171,7 +171,7 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({
 
         {/* Bottom */}
         <div className="pt-8 border-t border-[#E9E3DA]/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#E9E3DA]/50">
-          <p>© {new Date().getFullYear()} Fraol Abera Travel Agency. Akaki Kality, Addis Ababa, Ethiopia.</p>
+          <p>© {new Date().getFullYear()} {t.footerCopyright}</p>
           <div className="flex items-center space-x-4">
             <button onClick={onOpenTrackModal} className="hover:text-white transition uppercase text-[10px] tracking-wider min-h-[36px]">
               Track Ticket

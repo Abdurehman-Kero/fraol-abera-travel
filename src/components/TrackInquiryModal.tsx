@@ -8,17 +8,22 @@ import {
   PhoneCall
 } from 'lucide-react';
 
+import { Language, translations } from '../data/translations';
+
 interface TrackInquiryModalProps {
   initialSearchQuery?: string;
   onClose: () => void;
   onOpenReceiptModal: () => void;
+  currentLang?: Language;
 }
 
 export const TrackInquiryModal: React.FC<TrackInquiryModalProps> = ({
   initialSearchQuery = '',
   onClose,
-  onOpenReceiptModal
+  onOpenReceiptModal,
+  currentLang = 'en'
 }) => {
+  const t = translations[currentLang];
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery);
   const [loading, setLoading] = useState(false);
   const [inquiry, setInquiry] = useState<InquiryTicket | null>(null);
@@ -85,10 +90,10 @@ export const TrackInquiryModal: React.FC<TrackInquiryModalProps> = ({
           <div>
             <h2 className="text-2xl font-bold font-serif text-[#262523] flex items-center space-x-2">
               <Search className="w-6 h-6 text-[#D66A4A]" />
-              <span>Track Inquiry Ticket Status</span>
+              <span>{t.trackModalTitle}</span>
             </h2>
             <p className="text-xs text-[#78736B]">
-              Enter your Ticket Reference # (e.g. FATA-2025-1001) or phone number
+              {t.trackModalSubtitle}
             </p>
           </div>
 
@@ -101,7 +106,7 @@ export const TrackInquiryModal: React.FC<TrackInquiryModalProps> = ({
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="FATA-2025-1001 or +251 911..."
+              placeholder={t.trackModalPlaceholder}
               className="flex-1 px-3.5 py-2.5 bg-[#F7F3EC] border border-[#E9E3DA] rounded-[2px] text-sm text-[#262523] placeholder-[#78736B] focus:outline-none focus:border-[#D66A4A] font-mono"
             />
             <button
@@ -109,7 +114,7 @@ export const TrackInquiryModal: React.FC<TrackInquiryModalProps> = ({
               disabled={loading}
               className="px-5 py-2.5 rounded-[2px] bg-[#D66A4A] hover:bg-[#C2583A] text-white font-bold text-xs uppercase tracking-widest transition flex items-center space-x-1"
             >
-              {loading ? <span>Searching...</span> : <span>Search</span>}
+              {loading ? <span>{t.trackModalSearching}</span> : <span>{t.trackModalSearch}</span>}
             </button>
           </form>
 

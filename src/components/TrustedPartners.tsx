@@ -1,26 +1,33 @@
 import React from 'react';
+import { Language, translations } from '../data/translations';
 
-export const TrustedPartners: React.FC = () => {
+interface TrustedPartnersProps {
+  currentLang: Language;
+}
+
+export const TrustedPartners: React.FC<TrustedPartnersProps> = ({ currentLang }) => {
+  const t = translations[currentLang];
+
   const partners = [
     {
-      name: 'Ethiopian Airlines',
-      logo: '✈️', // We'll use a stylized text or simple SVG/icon approach
-      desc: 'Official Ticketing Partner'
+      name: t.partnerEthAir,
+      logo: '✈️',
+      desc: t.partnerEthAirDesc
     },
     {
-      name: 'Telebirr',
+      name: t.partnerTelebirr,
       logo: '📱',
-      desc: 'Digital Payment Partner'
+      desc: t.partnerTelebirrDesc
     },
     {
-      name: 'Commercial Bank of Ethiopia',
+      name: t.partnerCBE,
       logo: '🏦',
-      desc: 'Banking Partner'
+      desc: t.partnerCBEDesc
     },
     {
-      name: 'Ethiopian Wildlife Conservation Authority',
+      name: t.partnerEWCA,
       logo: '🦁',
-      desc: 'Permit Partner'
+      desc: t.partnerEWCADesc
     }
   ];
 
@@ -28,8 +35,8 @@ export const TrustedPartners: React.FC = () => {
     <section className="py-12 bg-[#F7F3EC] border-y border-[#E9E3DA]/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-8">
-          <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#D66A4A] mb-2">Verified & Trusted By</h3>
-          <h2 className="text-2xl font-serif font-bold text-[#262523]">Our Official Partners</h2>
+          <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#D66A4A] mb-2">{t.partnersPretitle}</h3>
+          <h2 className="text-2xl font-serif font-bold text-[#262523]">{t.partnersTitle}</h2>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
