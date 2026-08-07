@@ -1,0 +1,6 @@
+{
+  "name": "Fraol Abera Travel Agency",
+  "description": "Travel Agency Platform & Lead Operations System for Fraol Abera Travel Agency, Akaki Kality, Addis Ababa, Ethiopia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

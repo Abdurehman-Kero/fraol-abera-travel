@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --terracotta: #D66A4A;
+    --terracotta-hover: #C2583A;
+    --ivory: #F7F3EC;
+    --sage: #AEB69A;
+    --charcoal: #262523;
+    --warm-gray: #E9E3DA;
+    --warm-card: #FFFFFF;
+  }
+
+  body {
+    background-color: var(--ivory);
+    color: var(--charcoal);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+}
+
+/* Custom theme helper classes */
+.bg-ivory { background-color: #F7F3EC; }
+.bg-terracotta { background-color: #D66A4A; }
+.hover\:bg-terracotta-dark:hover { background-color: #C2583A; }
+.text-terracotta { color: #D66A4A; }
+.border-terracotta { border-color: #D66A4A; }
+
+.bg-charcoal { background-color: #262523; }
+.text-charcoal { color: #262523; }
+.border-charcoal { border-color: #262523; }
+
+.bg-sage { background-color: #AEB69A; }
+.text-sage { color: #8A9374; }
+.border-sage { border-color: #AEB69A; }
+
+.bg-warm-gray { background-color: #E9E3DA; }
+.border-warm-gray { border-color: #E9E3DA; }
+.text-warm-muted { color: #78736B; }
+
+.btn-primary-terracotta {
+  background-color: #D66A4A;
+  color: #FFFFFF;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+.btn-primary-terracotta:hover {
+  background-color: #C2583A;
+  transform: translateY(-1px);
+}
+
+.btn-secondary-charcoal {
+  border: 1px solid #262523;
+  color: #262523;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+.btn-secondary-charcoal:hover {
+  background-color: #262523;
+  color: #F7F3EC;
+}
