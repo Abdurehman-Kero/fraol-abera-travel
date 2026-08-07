@@ -91,10 +91,18 @@ export default function App() {
       <WhyUs onOpenWizard={handleOpenWizardWithService} currentLang={currentLang} />
 
       {/* 3. Experience Selector */}
-      <ExperienceSelector onOpenWizard={handleOpenWizardWithService} currentLang={currentLang} />
+      <ExperienceSelector 
+        onOpenWizard={handleOpenWizardWithService} 
+        onSelectPackage={setSelectedPackage}
+        currentLang={currentLang} 
+      />
 
       {/* 4. Destinations Strip */}
-      <DestinationsStrip onOpenWizard={handleOpenWizardWithService} currentLang={currentLang} />
+      <DestinationsStrip 
+        onOpenWizard={handleOpenWizardWithService} 
+        onSelectPackage={setSelectedPackage}
+        currentLang={currentLang} 
+      />
 
       {/* 5. Testimonials */}
       <Testimonials currentLang={currentLang} />

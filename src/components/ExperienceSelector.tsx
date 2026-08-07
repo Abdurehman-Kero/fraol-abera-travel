@@ -4,10 +4,11 @@ import { Language, translations } from '../data/translations';
 
 interface ExperienceSelectorProps {
   onOpenWizard: (service?: string) => void;
+  onSelectPackage: (pkg: any) => void;
   currentLang: Language;
 }
 
-export const ExperienceSelector: React.FC<ExperienceSelectorProps> = ({ onOpenWizard, currentLang }) => {
+export const ExperienceSelector: React.FC<ExperienceSelectorProps> = ({ onOpenWizard, onSelectPackage, currentLang }) => {
   const t = translations[currentLang];
 
   const experiences = [
@@ -16,28 +17,28 @@ export const ExperienceSelector: React.FC<ExperienceSelectorProps> = ({ onOpenWi
       title: t.historicTours,
       desc: 'Lalibela, Harar Jugol, Axum obelisks — guided cultural heritage circuits',
       service: 'domestic_tour',
-      image: 'https://images.unsplash.com/photo-1539065456501-a7c23f3ffe89?w=600&q=80',
+      image: '/lalibela_church.png',
     },
     {
       icon: <TreePine className="w-6 h-6" />,
       title: t.simienWildlife,
       desc: 'Simien Mountains, Bale Harenna forest, Gelada baboon treks',
       service: 'cultural_expedition',
-      image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=80',
+      image: '/hero-ethiopia.png',
     },
     {
       icon: <Car className="w-6 h-6" />,
       title: t.wilderness4x4,
       desc: '4x4 Land Cruiser drives through remote valleys and river crossings',
       service: 'safari_expedition',
-      image: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&q=80',
+      image: '/forest_safari.png',
     },
     {
       icon: <Plane className="w-6 h-6" />,
       title: t.domesticFlightsAndDrive,
       desc: 'Ethiopian Airlines domestic tickets + overland Coaster bus packages',
       service: 'domestic_flight',
-      image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80',
+      image: '/flying_bird.png',
     },
   ];
 
@@ -60,7 +61,21 @@ export const ExperienceSelector: React.FC<ExperienceSelectorProps> = ({ onOpenWi
           {experiences.map((exp, idx) => (
             <button
               key={idx}
-              onClick={() => onOpenWizard(exp.service)}
+              onClick={() => onSelectPackage({
+                id: exp.service,
+                title: exp.title,
+                category: exp.service,
+                image: exp.image,
+                duration: '3-7 Days',
+                priceETB: 15000,
+                priceUSD: 300,
+                highlights: [exp.desc, 'Local guided tours', 'Premium 4x4 or flight transport', 'Boutique accommodation'],
+                itinerary: [
+                  { day: 1, title: 'Arrival & Welcome', desc: 'Transfer to your luxury hotel.' },
+                  { day: 2, title: 'Guided Heritage Tour', desc: exp.desc },
+                  { day: 3, title: 'Departure', desc: 'Private transfer to airport.' }
+                ]
+              })}
               className="group relative rounded-sm overflow-hidden text-left h-72 sm:h-80 shadow-sm hover:shadow-xl transition-shadow duration-300"
             >
               {/* Background image */}

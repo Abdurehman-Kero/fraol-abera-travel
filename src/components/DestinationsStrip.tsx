@@ -4,37 +4,38 @@ import { Language, translations } from '../data/translations';
 
 interface DestinationsStripProps {
   onOpenWizard: (service?: string) => void;
+  onSelectPackage: (pkg: any) => void;
   currentLang: Language;
 }
 
-export const DestinationsStrip: React.FC<DestinationsStripProps> = ({ onOpenWizard, currentLang }) => {
+export const DestinationsStrip: React.FC<DestinationsStripProps> = ({ onOpenWizard, onSelectPackage, currentLang }) => {
   const t = translations[currentLang];
 
   const destinations = [
     {
       name: 'Lalibela',
       label: 'Rock Churches',
-      image: 'https://images.unsplash.com/photo-1631479669258-8d58e6c892c5?w=400&q=80',
+      image: '/lalibela_church.png',
     },
     {
       name: 'Simien',
       label: 'Mountains & Gelada',
-      image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&q=80',
+      image: '/hero-ethiopia.png',
     },
     {
       name: 'Harar',
       label: 'Jugol Old City',
-      image: 'https://images.unsplash.com/photo-1509909756405-be0199881695?w=400&q=80',
+      image: '/hero-harar.png',
     },
     {
       name: 'Bale',
       label: 'Harenna Forest',
-      image: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=400&q=80',
+      image: '/forest_safari.png',
     },
     {
       name: 'Danakil',
       label: 'Sulphur Volcanoes',
-      image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&q=80',
+      image: '/forest_safari.png',
     },
   ];
 
@@ -65,7 +66,21 @@ export const DestinationsStrip: React.FC<DestinationsStripProps> = ({ onOpenWiza
           {destinations.map((dest, idx) => (
             <button
               key={idx}
-              onClick={() => onOpenWizard('domestic_tour')}
+              onClick={() => onSelectPackage({
+                id: dest.name,
+                title: `${dest.name} - ${dest.label}`,
+                category: 'domestic_tour',
+                image: dest.image,
+                duration: '2-4 Days',
+                priceETB: 12000,
+                priceUSD: 250,
+                highlights: [`Explore ${dest.name}`, 'Expert local guide', 'All ground transfers', 'Premium lodge stay'],
+                itinerary: [
+                  { day: 1, title: 'Arrival & Setup', desc: `Arrive in ${dest.name} and check in to your boutique lodge.` },
+                  { day: 2, title: `Full Day ${dest.label} Tour`, desc: 'An immersive guided tour of the key sites.' },
+                  { day: 3, title: 'Departure', desc: 'Transfer to the airport.' }
+                ]
+              })}
               className="group relative rounded-sm overflow-hidden text-left"
             >
               <div className="aspect-[3/4] bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url('${dest.image}')` }} />
