@@ -9,67 +9,70 @@ interface TestimonialsProps {
 export const Testimonials: React.FC<TestimonialsProps> = ({ currentLang }) => {
   const t = translations[currentLang];
 
-  const testimonials = [
-    {
-      name: "Amanuel T.",
-      location: t.testi1Location,
-      text: t.testi1Text,
-      rating: 5,
-      role: t.testi1Role
-    },
-    {
-      name: "Sarah Jenkins",
-      location: t.testi2Location,
-      text: t.testi2Text,
-      rating: 5,
-      role: t.testi2Role
-    },
-    {
-      name: "Dawit M.",
-      location: t.testi3Location,
-      text: t.testi3Text,
-      rating: 5,
-      role: t.testi3Role
-    }
-  ];
-
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
-      {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-[#D66A4A]/5 rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl pointer-events-none"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="text-center mb-16">
-          <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#D66A4A] mb-2">{t.testiPretitle}</h3>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#262523]">{t.testiTitle}</h2>
-          <div className="w-16 h-1 bg-[#D66A4A] mx-auto mt-6 rounded-full"></div>
+    <section className="bg-[#F5F1EA] py-20 sm:py-28">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10">
+        {/* Header */}
+        <div className="mb-14 max-w-sm">
+          <p className="text-[#C97B4B] text-[10px] font-semibold uppercase tracking-[0.35em] mb-3">
+            {t.testiPretitle}
+          </p>
+          <h2 className="font-['Cormorant_Garamond'] font-light text-[#1C1917] text-4xl sm:text-5xl leading-[1.1]">
+            {t.testiTitle}
+          </h2>
+          <div className="w-10 h-px bg-[#C97B4B] mt-6" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, idx) => (
-            <div key={idx} className="bg-[#F7F3EC] rounded-2xl p-8 relative shadow-sm hover:shadow-xl transition-shadow duration-300 border border-[#E9E3DA]">
-
-              
-              <div className="relative z-10 space-y-4">
-                <div className="flex space-x-1">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-amber-500 fill-amber-500" />
-                  ))}
-                </div>
-                
-                <p className="text-sm text-[#262523] italic leading-relaxed font-serif">
-                  "{testimonial.text}"
-                </p>
-                
-                <div className="pt-4 border-t border-[#E9E3DA]">
-                  <h4 className="font-bold text-[#262523] uppercase text-xs tracking-wider">{testimonial.name}</h4>
-                  <p className="text-[10px] text-[#78736B] uppercase tracking-widest mt-1">
-                    {testimonial.role} • {testimonial.location}
-                  </p>
-                </div>
+        {/* Two column: quote left, portrait right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-14">
+          {/* Left: large pull-quote */}
+          <div className="space-y-6">
+            <div className="flex space-x-1">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 text-[#C97B4B] fill-[#C97B4B]" />)}
+            </div>
+            <blockquote className="font-['Cormorant_Garamond'] text-[#1C1917] text-2xl sm:text-3xl font-light italic leading-relaxed">
+              "{t.testi1Text}"
+            </blockquote>
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-px bg-[#C97B4B]" />
+              <div>
+                <p className="font-semibold text-[#1C1917] text-sm uppercase tracking-wider">Amanuel T.</p>
+                <p className="text-[#6B6560] text-xs">{t.testi1Role} · {t.testi1Location}</p>
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Right: portrait */}
+          <div className="relative">
+            <div className="aspect-[4/5] rounded-sm overflow-hidden shadow-xl max-w-sm">
+              <img src="/testimonial-portrait.png" alt="Happy traveler" className="w-full h-full object-cover" />
+            </div>
+            {/* Small floating quote card */}
+            <div className="absolute -bottom-4 -right-4 sm:right-8 bg-white border border-[#DDD8CE] p-5 shadow-lg max-w-[220px] hidden sm:block">
+              <div className="flex space-x-1 mb-2">
+                {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 text-[#C97B4B] fill-[#C97B4B]" />)}
+              </div>
+              <p className="text-[#1C1917] text-xs font-light italic leading-relaxed">"{t.testi2Text.slice(0, 80)}…"</p>
+              <p className="text-[#C97B4B] text-[10px] font-semibold uppercase tracking-widest mt-2">Sarah Jenkins · UK</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Third testimonial — bottom full-width card */}
+        <div className="bg-[#1C1917] rounded-sm p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <div className="flex-1">
+            <div className="flex space-x-1 mb-3">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 text-[#C97B4B] fill-[#C97B4B]" />)}
+            </div>
+            <p className="font-['Cormorant_Garamond'] text-[#F5F1EA] text-xl sm:text-2xl font-light italic leading-relaxed">
+              "{t.testi3Text}"
+            </p>
+          </div>
+          <div className="shrink-0 text-right sm:text-right border-t sm:border-t-0 sm:border-l border-[#F5F1EA]/10 pt-4 sm:pt-0 sm:pl-8">
+            <p className="font-semibold text-[#F5F1EA] text-sm uppercase tracking-wider">Dawit M.</p>
+            <p className="text-[#C97B4B] text-xs">{t.testi3Role}</p>
+            <p className="text-[#F5F1EA]/40 text-xs">{t.testi3Location}</p>
+          </div>
         </div>
       </div>
     </section>
